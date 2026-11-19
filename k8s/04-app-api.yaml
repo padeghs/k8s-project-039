@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-api
+  namespace: id-039
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app-api
+  template:
+    metadata:
+      labels:
+        app: app-api
+    spec:
+      containers:
+        - name: app-api
+          image: app-api:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+          volumeMounts:
+            - name: text-storage
+              mountPath: /data
+      volumes:
+        - name: text-storage
+          persistentVolumeClaim:
+            claimName: research-text-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-api-svc
+  namespace: id-039
+spec:
+  type: ClusterIP
+  selector:
+    app: app-api
+  ports:
+    - port: 80
+      targetPort: 5000
