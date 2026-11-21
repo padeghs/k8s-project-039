@@ -16,6 +16,20 @@ spec:
                 name: app-about-svc
                 port:
                   number: 80
+          - path: /research
+            pathType: Prefix
+            backend:
+              service:
+                name: app-research-svc
+                port:
+                  number: 80
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: app-api-svc
+                port:
+                  number: 80
           - path: /
             pathType: Prefix
             backend:

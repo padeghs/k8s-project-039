@@ -9,7 +9,7 @@
 
 ## Quick Start (Clone & Run)
 ```bash
-git clone <YOUR_GITHUB_REPO_URL>
+git clone https://github.com/padeghs/k8s-project-039.git
 cd k8s-project-039
 chmod +x deploy.sh
 ./deploy.sh
